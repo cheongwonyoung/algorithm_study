@@ -33,18 +33,25 @@ public class BOJ1735 {
 				n2 += temp_n2;	
 			}
 			
-//			System.out.println(m1 +" "+m2);
-			// 7 5
-			// 7 10
-			// 14 10
-			// 14 15
-			// 21 15
-			// 21 20
-			// 21 25
-			// 28 25
-			// 28 30
-			// 35 30
-			// 35 35
+			
+			
+		}
+		
+		int son = n1+n2;
+		int temp = son;
+		int mom = m1;
+		int cnt = 2;
+		while(temp>1) {
+			if(temp%cnt == 0) {
+				temp = temp/cnt;
+				if(mom%temp==0) {
+					mom = mom/temp;
+					son = son/temp;
+				}
+			}
+			else {
+				cnt--;
+			}
 			
 		}
 		
