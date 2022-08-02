@@ -26,7 +26,11 @@ public class Main_1244 {
 			// 받은 번호 ( 1이상 스위치 개수 이하)
 			int num = Integer.parseInt(temp[1]);
 			
+<<<<<<<< HEAD:other/src/other/Main_1244.java
 			// 남학생
+========
+			//남학생
+>>>>>>>> 63a43f3 (feat : Add-Boj-17829):other/src/other/BOJ1244.java
 			if(s==1) {
 				int j = 1;
 				while(num*j-1 >= 0 && num*j-1 < n) {
@@ -40,16 +44,20 @@ public class Main_1244 {
 				}
 			}
 			
+<<<<<<<< HEAD:other/src/other/Main_1244.java
 			// 여학생
+========
+			//여학생
+>>>>>>>> 63a43f3 (feat : Add-Boj-17829):other/src/other/BOJ1244.java
 			else if(s==2) {
-				
 				int l = 0;
-				if (num-l-1 >= 0 || num+l-1 <n) {
+				if (num-l-1 >= 0 && num+l-1 <n) {
 					while(switch_num[num-l-1].equals(switch_num[num+l-1])) {
 						
 						if(switch_num[num-l-1].equals("1")) {
 							switch_num[num-l-1] = "0";
 							switch_num[num+l-1] = "0";
+	
 						}
 						else { 
 							switch_num[num-l-1] = "1";
@@ -62,7 +70,7 @@ public class Main_1244 {
 				
 			}
 		}
-		
+
 		for(int p =0; p<n; p++) {
 			System.out.print(switch_num[p] + " ");
 
