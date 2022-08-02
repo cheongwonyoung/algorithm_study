@@ -20,7 +20,7 @@ public class BOJ17829 {
 			
 		}
 		
-		// 줄어드는 nextArr (다음 결과배열)
+		// 줄어드는 nextArr(다음 결과배열)
 		int[][] nextArr = new int[n][n];
 		// 계산상 이전 배열
 		int[][] tempArr = new int[n][n];
