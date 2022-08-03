@@ -6,6 +6,21 @@ import java.io.InputStreamReader;
 
 public class BOJ1735 {
 	
+	public static void uc(int n1, int m1, int n2, int m2) {
+		if (m1==m2) return;
+		uc(n1,m1,n2,m2);
+		if(m1 < m2) {
+			m1 += m1;
+			n1 += n1;
+		}
+		else if(m2 < m1) {
+			m2 += m2;
+			n2 += n2;
+		}
+		
+		return;
+	}
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String[] temp1 = in.readLine().split(" ");
@@ -36,24 +51,8 @@ public class BOJ1735 {
 			
 			
 		}
+
 		
-		int son = n1+n2;
-		int temp = son;
-		int mom = m1;
-		int cnt = 2;
-		while(temp>1) {
-			if(temp%cnt == 0) {
-				temp = temp/cnt;
-				if(mom%temp==0) {
-					mom = mom/temp;
-					son = son/temp;
-				}
-			}
-			else {
-				cnt--;
-			}
-			
-		}
 		
 		System.out.println(n1+n2 +" "+m1);
 		
