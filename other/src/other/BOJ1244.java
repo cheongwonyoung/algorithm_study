@@ -25,20 +25,8 @@ public class BOJ1244 {
 			int s = Integer.parseInt(temp[0]);
 			// 받은 번호 ( 1이상 스위치 개수 이하)
 			int num = Integer.parseInt(temp[1]);
-			
-<<<<<<< HEAD
-<<<<<<<< HEAD:other/src/other/Main_1244.java
-<<<<<<<< HEAD:other/src/other/Main_1244.java
 			// 남학생
-========
-			//남학생
->>>>>>>> 63a43f3 (feat : Add-Boj-17829):other/src/other/BOJ1244.java
-========
-			//남학생
->>>>>>>> 06f478eb50adb8ea42984de7f179d49b63c5f749:other/src/other/BOJ1244.java
-=======
-			// 남학생
->>>>>>> 06f478eb50adb8ea42984de7f179d49b63c5f749
+
 			if(s==1) {
 				int j = 1;
 				while(num*j-1 >= 0 && num*j-1 < n) {
@@ -52,35 +40,18 @@ public class BOJ1244 {
 				}
 			}
 			
-<<<<<<< HEAD
-<<<<<<<< HEAD:other/src/other/Main_1244.java
-<<<<<<<< HEAD:other/src/other/Main_1244.java
 			// 여학생
-========
-			//여학생
->>>>>>>> 63a43f3 (feat : Add-Boj-17829):other/src/other/BOJ1244.java
-========
-			//여학생
->>>>>>>> 06f478eb50adb8ea42984de7f179d49b63c5f749:other/src/other/BOJ1244.java
+
 			else if(s==2) {
 				int l = 0;
 				if (num-l-1 >= 0 && num+l-1 <n) {
-=======
-			// 여학생
-			else if(s==2) {
-				
-				int l = 0;
-				if (num-l-1 >= 0 || num+l-1 <n) {
->>>>>>> 06f478eb50adb8ea42984de7f179d49b63c5f749
+
 					while(switch_num[num-l-1].equals(switch_num[num+l-1])) {
 						
 						if(switch_num[num-l-1].equals("1")) {
 							switch_num[num-l-1] = "0";
 							switch_num[num+l-1] = "0";
-<<<<<<< HEAD
-	
-=======
->>>>>>> 06f478eb50adb8ea42984de7f179d49b63c5f749
+
 						}
 						else { 
 							switch_num[num-l-1] = "1";
@@ -93,11 +64,7 @@ public class BOJ1244 {
 				
 			}
 		}
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 06f478eb50adb8ea42984de7f179d49b63c5f749
 		for(int p =0; p<n; p++) {
 			System.out.print(switch_num[p] + " ");
 
