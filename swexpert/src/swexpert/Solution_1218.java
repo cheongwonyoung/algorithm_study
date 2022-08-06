@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Deque;
 
 public class Solution_1218 {
-
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
@@ -25,16 +24,7 @@ public class Solution_1218 {
 				}
 				else {
 					String temp = deque.pollLast();
-					if(temp.equals("(") && tc[j].equals(")")) {
-						continue;
-					}
-					else if(temp.equals("{") && tc[j].equals("}")) {
-						continue;
-					}
-					else if(temp.equals("[") && tc[j].equals("]")) {
-						continue;
-					}
-					else if(temp.equals("<") && tc[j].equals(">")) {
+					if((temp.equals("(") && tc[j].equals(")")) || (temp.equals("{") && tc[j].equals("}")) || (temp.equals("[") && tc[j].equals("]"))||(temp.equals("<") && tc[j].equals(">"))){
 						continue;
 					}
 					else {
