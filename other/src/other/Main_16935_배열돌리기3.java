@@ -46,9 +46,9 @@ public class Main_16935_배열돌리기3 {
 					int col = arr[0].length;
 					
 					temp_arr = new int[row][col];
-					for(int rl=0; rl<n; rl++) {
-						for(int cl=0; cl<m; cl++) {
-							temp_arr[n-1-rl][cl] = arr[rl][cl];
+					for(int rl=0; rl<row; rl++) {
+						for(int cl=0; cl<col; cl++) {
+							temp_arr[row-1-rl][cl] = arr[rl][cl];
 						}
 					}
 					arr = temp_arr;
@@ -58,9 +58,9 @@ public class Main_16935_배열돌리기3 {
 					col = arr[0].length;
 					
 					temp_arr = new int[row][col];
-					for(int rl=0; rl<n; rl++) {
-						for(int cl=0; cl<m; cl++) {
-							temp_arr[rl][m-cl-1] = arr[rl][cl];
+					for(int rl=0; rl<row; rl++) {
+						for(int cl=0; cl<col; cl++) {
+							temp_arr[rl][col-cl-1] = arr[rl][cl];
 						}
 					}
 					arr = temp_arr;
@@ -96,22 +96,22 @@ public class Main_16935_배열돌리기3 {
 					col = arr[0].length;
 					
 					temp_arr = new int[row][col];
-					for(int a = 0; a < n; a++) {
-						for(int b = 0; b < m; b++) {
-							if(a < n/2 && b < m/2) {
-								temp_arr[a][b+(m/2)] = arr[a][b];
+					for(int a = 0; a < row; a++) {
+						for(int b = 0; b < col; b++) {
+							if(a < row/2 && b < col/2) {
+								temp_arr[a][b+(col/2)] = arr[a][b];
 							}
 							
-							else if(a < n/2 && b >= m/2) {								
-								temp_arr[a+(n/2)][b] = arr[a][b];
+							else if(a < row/2 && b >= col/2) {								
+								temp_arr[a+(row/2)][b] = arr[a][b];
 							}
 							
-							else if(a >= n/2 && b >= m/2) {
-								temp_arr[a][b-(m/2)] = arr[a][b];
+							else if(a >= row/2 && b >= col/2) {
+								temp_arr[a][b-(col/2)] = arr[a][b];
 							}
 							
-							else if(a >= n/2 && b < m/2) {
-								temp_arr[a-(n/2)][b] = arr[a][b];
+							else if(a >= row/2 && b < col/2) {
+								temp_arr[a-(row/2)][b] = arr[a][b];
 						}
 					}
 					
@@ -124,8 +124,8 @@ public class Main_16935_배열돌리기3 {
 					
 					temp_arr = new int[row][col];
 					for(int a = 0; a < n; a++) {
-						for(int b = 0; b < m; b++) {
-							if(a < n/2 && b < m/2) {
+						for(int b = 0; b < col; b++) {
+							if(a < row/2 && b < col/2) {
 								temp_arr[a+(n/2)][b] = arr[a][b];
 							}
 							
