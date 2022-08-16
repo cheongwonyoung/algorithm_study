@@ -13,6 +13,7 @@ public class BOJ2609_최대공약수와최소공배수 {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
 		String[] temp = in.readLine().split(" ");
 		
 		int n1 = Integer.parseInt(temp[0]);
