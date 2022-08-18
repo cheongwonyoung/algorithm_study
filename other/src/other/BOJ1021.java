@@ -13,16 +13,22 @@ public class BOJ1021 {
 		StringBuilder sb = new StringBuilder();
 		Deque<Integer> deque = new ArrayDeque<>();
 		String[] temp = in.readLine().split(" ");
+		// 큐의 크기
 		int n = Integer.parseInt(temp[0]);
+		// 뽑아내려고 하는 원소의 위치
 		int m = Integer.parseInt(temp[1]);
 		int cnt = 0;
 
+		// 큐 생성
 		for(int i=1; i<=n; i++) {
 			deque.add(i);
 		}
+		
 		temp = in.readLine().split(" ");
 		for(String num : temp) {
 			int val = Integer.parseInt(num);
+			
+			// 큐 복사
 			Deque<Integer> tem = new ArrayDeque<>(deque);
 			
 			// 값이 deque안에서 몇번째에 있는지 탐색
