@@ -20,12 +20,15 @@ public class BOJ1764 {
 		String[] temp = in.readLine().split(" ");
 		int n = Integer.parseInt(temp[0]); // 듣도 못한 사람의 수
 		int m = Integer.parseInt(temp[1]); // 보도 못한 사람의 수 
-
-
+	
+//		듣도 못한 사람의 수를 Hashset으로 받음
+//		Hashset.contains() // O(1)
+//		List.contains() // O(n)
 		for(int i=0; i<n; i++) {
 			set.add(in.readLine());
 		}
-		
+
+//		보도 못한 사람을 입력 받고 듣도 못한 사람에 있나 확인 후 있으면 리스트에 추가
 		for(int i=0; i<m; i++) {
 			String tem = in.readLine();
 			if(set.contains(tem)) {
@@ -33,7 +36,9 @@ public class BOJ1764 {
 			}
 		}
 		
+		// 사전순으로 정렬
 		Collections.sort(result);
+		
 		int len = result.size();
 		sb.append(len).append("\n");
 		for(int i=0; i<len; i++) {
