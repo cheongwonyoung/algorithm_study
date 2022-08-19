@@ -42,7 +42,8 @@ public class BOJ1260 {
 		for(int i=1; i<=n; i++) {
 			if(!check[i] && arr[cur][i]!=0) {
 				
-				dfs(i);
+				dfs(i); 
+				
 			}
 		}
 
