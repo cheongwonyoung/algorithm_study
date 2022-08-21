@@ -19,9 +19,11 @@ public class Main_1697_숨바꼭질 {
 	
 	public static void bfs(int n) {
 		Queue<Integer> queue = new ArrayDeque<Integer>();
+		boolean[] visit = new boolean[100001];
 		int[] check = new int[100001];
 		queue.add(n);
-		check[n] = 1;
+		check[n] = 0;
+		visit[n] = true;
 		while(!queue.isEmpty()){
 			int tem = queue.poll();
 			
@@ -29,15 +31,24 @@ public class Main_1697_숨바꼭질 {
 				System.out.println(check[tem]);
 				break;
 			}
-			if(tem-1 >= 0 && tem-1 <=100000)
-			{queue.add(tem-1);
-			check[tem-1] = check[tem]+1;}
-			if(tem+1 >= 0 && tem+1 <=100000)
-			{queue.add(tem+1);
-			check[tem+1] = check[tem]+1;}
-			if(tem*2 >= 0 && tem*2 <=100000)
-			{queue.add(tem*2);
-			check[tem*2] = check[tem]+1;}
+			if(tem-1 >= 0 && tem-1 <=100000 && visit[tem-1]==false)
+			{
+				queue.add(tem-1);
+				visit[tem-1] = true;
+				check[tem-1] = check[tem]+1;
+			}
+			if(tem+1 >= 0 && tem+1 <=100000 && visit[tem+1]==false)
+			{
+				queue.add(tem+1);
+				visit[tem+1] = true;
+				check[tem+1] = check[tem]+1;
+				}
+			if(tem*2 >= 0 && tem*2 <=100000 && visit[tem*2]==false)
+			{
+				queue.add(tem*2);
+				visit[tem*2] = true;
+				check[tem*2] = check[tem]+1;
+			}
 		}
 	}
 	
