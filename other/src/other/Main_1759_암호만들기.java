@@ -10,6 +10,7 @@ public class Main_1759_암호만들기 {
 	static String[] nums;
 	static String[] result;
 	static int l, c, cnt;
+	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String[] temp = in.readLine().split(" ");
@@ -23,7 +24,7 @@ public class Main_1759_암호만들기 {
 		
 		func(0, 0);
 		
-	
+		System.out.println(sb);
 	}
 	
 	public static void func(int cnt, int start) {
@@ -39,16 +40,12 @@ public class Main_1759_암호만들기 {
 					za += 1;
 				}
 			}
+			
 			if(mo>=1 && za>=2) {
-				for(int i=0; i<l; i++) {
-					System.out.print(result[i]);	
-				}
-				System.out.println();
+				sb.append(String.join("", result)).append("\n");
 				return;
 			}
-			else {
-				return;
-			}
+			return;
 			
 		}
 		
