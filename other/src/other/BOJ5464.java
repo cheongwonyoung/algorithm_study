@@ -15,6 +15,21 @@ public class BOJ5464 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+<<<<<<< HEAD
+		String[] temp = in.readLine().split(" ");
+		int n = Integer.parseInt(temp[0]);
+		int m = Integer.parseInt(temp[1]);
+		int[] rs = new int[n];
+		int[] wk = new int[m];
+		
+		for (int i = 0; i < n; i++) {
+			rs[i] = Integer.parseInt(in.readLine());
+		}
+		
+		for (int i = 0; i < m; i++) {
+			wk[i] = Integer.parseInt(in.readLine());
+		}
+=======
 		
 		String[] temp = in.readLine().split(" ");
 		int n = Integer.parseInt(temp[0]);
@@ -51,6 +66,7 @@ public class BOJ5464 {
 		
 		
 		
+>>>>>>> bdad2879474b834611674a7cb27d98803978a79b
 		
 	}
 	
