@@ -17,6 +17,7 @@ public class Main_3055_탈출 {
 	static int[] start, end;
 	static int cnt; // 범람횟수
 	static int[][] check; // 몇 분인지
+	static boolean[][] visit;
 	// 상하좌우
 	static int[] dr = { -1, 1, 0, 0 };
 	static int[] dc = { 0, 0, -1, 1 };
@@ -31,7 +32,7 @@ public class Main_3055_탈출 {
 		list = new ArrayList<>(); // 물 위치
 		start = new int[2]; //
 		end = new int[2];
-
+		visit = new boolean[r][c];
 		for (int i = 0; i < r; i++) {
 			tem = in.readLine().split("");
 			for (int j = 0; j < c; j++) {
@@ -50,16 +51,27 @@ public class Main_3055_탈출 {
 			}
 		}
 
-		for(int i =0; i<r; i++) {
-			for(int j=0; j<c; j++) {
-				System.out.print(check[i][j] + " ");
-			}
-			System.out.println();
+		bfs();
+		
+//		for(int i =0; i<r; i++) {
+//			for(int j=0; j<c; j++) {
+//				System.out.print(check[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+		if(check[end[0]][end[1]]==0) {
+			System.out.println("KAKTUS");
 		}
+		else {
+			System.out.println(check[end[0]][end[1]]);
+		}
+		
+		
 	}
 
 	public static void bfs() {
 		Queue<Integer[]> queue = new ArrayDeque<>();
+		
 		// 물 확산
 		int len = list.size();
 		for (int i=0; i<len; i++) {
@@ -77,17 +89,27 @@ public class Main_3055_탈출 {
 				list.add(new int[] {nr, nc});
 			}
 		}
+		cnt++;
 		
+		
+		visit[start[0]][start[1]] = true;
 		queue.add(new Integer[] { start[0], start[1] });
 		check[start[0]][start[1]] = 0;
 
 		while (!queue.isEmpty()) {
+//			System.out.println();
+//			for(int i =0; i<r; i++) {
+//				for(int j=0; j<c; j++) {
+//					System.out.print(arr[i][j] + " ");
+//				}
+//				System.out.println();
+//			}
 			Integer[] temp = queue.poll();
 			int row = temp[0];
 			int col = temp[1];
 			
 			// 물 확산
-			if((cnt++)==check[row][col]) {
+			if((cnt)==check[row][col]) {
 				
 				len = list.size();
 				for (int i=0; i<len; i++) {
@@ -107,7 +129,7 @@ public class Main_3055_탈출 {
 						list.add(new int[] {nr, nc});
 					}
 				}
-				
+				cnt++;
 			}
 			
 			// 이동
@@ -117,9 +139,11 @@ public class Main_3055_탈출 {
 				
 				if (nr < 0 || nr >= r || nc < 0 || nc >= c)
 					continue;
-				
-				if(arr[nr][nc].equals("X") || arr[nr][nc].equals("*") || arr[nr][nc].equals("S")) continue;
+
+//				System.out.println("nr : " + nr + ", nc : " + nc);
+				if(arr[nr][nc].equals("X") || arr[nr][nc].equals("*") || arr[nr][nc].equals("S") || visit[nr][nc]) continue;
 			
+				visit[nr][nc] = true;
 				queue.add(new Integer[] {nr, nc});
 				check[nr][nc] = check[row][col] + 1;
 			}	
