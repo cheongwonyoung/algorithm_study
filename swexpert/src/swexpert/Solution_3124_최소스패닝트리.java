@@ -34,6 +34,7 @@ public class Solution_3124_최소스패닝트리 {
 			String[] tem = in.readLine().split(" ");
 			int v = Integer.parseInt(tem[0]);
 			int e = Integer.parseInt(tem[1]);
+			
 			int[] arr = new int[v+1];
 			for(int i=0; i<=v; i++) {
 				arr[i] = i;
