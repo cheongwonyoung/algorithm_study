@@ -10,121 +10,120 @@ import java.util.Queue;
 
 public class Main_3055_탈출 {
 
+	static int r;
+	static int c;
+	static String[][] arr;
+	static List<int[]> list;
+	static int[] start, end;
+	static int cnt; // 범람횟수
+	static int[][] check; // 몇 분인지
 	// 상하좌우
 	static int[] dr = { -1, 1, 0, 0 };
 	static int[] dc = { 0, 0, -1, 1 };
-	static int[] dPosition = new int[2];
-	static int[] sPosition = new int[2];
-	static boolean[][] isCheck;
-	static int R, C, cnt = 1;
-	static int min_val = Integer.MAX_VALUE;
-	static String[][] arr;
-	static List<Integer[]> list;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		list = new ArrayList<Integer[]>();
 		String[] tem = in.readLine().split(" ");
-		R = Integer.parseInt(tem[0]);
-		C = Integer.parseInt(tem[1]);
-		arr = new String[R][C];
-		isCheck = new boolean[R][C];
+		r = Integer.parseInt(tem[0]);
+		c = Integer.parseInt(tem[1]);
+		arr = new String[r][c];
+		check = new int[r][c];
+		list = new ArrayList<>(); // 물 위치
+		start = new int[2]; //
+		end = new int[2];
 
-		for (int i = 0; i < R; i++) {
+		for (int i = 0; i < r; i++) {
 			tem = in.readLine().split("");
-			for (int j = 0; j < C; j++) {
+			for (int j = 0; j < c; j++) {
 				arr[i][j] = tem[j];
-				if (tem[j].equals("D")) {
-					dPosition[0] = i;
-					dPosition[1] = j;
+				if (arr[i][j].equals("D")) {
+					end[0] = i;
+					end[1] = j;
 				}
-				if (tem[j].equals("S")) {
-					sPosition[0] = i;
-					sPosition[1] = j;
+				if (arr[i][j].equals("S")) {
+					start[0] = i;
+					start[1] = j;
 				}
-				if (tem[j].equals("*")) {
-					Integer[] t = { i, j };
-					list.add(t);
+				if (arr[i][j].equals("*")) {
+					list.add(new int[] { i, j });
 				}
 			}
 		}
 
-		bfs(dPosition[0], dPosition[1]);
-
-		System.out.println(min_val);
+		for(int i =0; i<r; i++) {
+			for(int j=0; j<c; j++) {
+				System.out.print(check[i][j] + " ");
+			}
+			System.out.println();
+		}
 	}
 
-	public static void bfs(int r, int c) {
-		Queue<int[]> queue = new ArrayDeque<int[]>();
+	public static void bfs() {
+		Queue<Integer[]> queue = new ArrayDeque<>();
+		// 물 확산
+		int len = list.size();
+		for (int i=0; i<len; i++) {
+			int row = list.get(i)[0];
+			int col = list.get(i)[1];
+			for (int j = 0; j < 4; j++) {
+				int nr = dr[j] + row;
+				int nc = dc[j] + col;
 
-		int[] temp = { r, c };
-		queue.add(temp);
-
-		isCheck[r][c] = true;
-		while (!queue.isEmpty()) {
-			// 물 번지기 (돌, 고슴도치, 비버의 굴, 벽, 물로 번지기 x)
-			// 물의 상황에 따라? 고슴도치 이동 체크?
-			temp = queue.poll();
-//			System.out.println(temp[0]);
-//			System.out.println(temp[1]);
-			for (Integer[] tme : list) {
-				for (int j = 0; j < 4; j++) {
-					int wr = tme[0] + dr[j];
-					int wc = tme[1] + dc[j];
-					if (wr < 0 || wr >= R || wc < 0 || wc >= C)
-						continue;
-					if (arr[wr][wc].equals("*") || arr[wr][wc].equals("X") || arr[wr][wc].equals("D")
-							|| arr[wr][wc].equals("S"))
-						continue;
-					arr[wr][wc] = "*";
-					Integer[] tt = { wr, wc };
-					list.add(tt);
-
-					for (int a = 0; a < R; a++) {
-						for (int b = 0; b < C; b++) {
-							System.out.print(arr[a][b] + " ");
-						}
-						System.out.println();
-					}
-				}
-				// 고슴도치 이동
-				for (int i = 0; i < 4; i++) {
-					int nr = dr[i] + temp[0];
-					int nc = dc[i] + temp[1];
-//						System.out.println("wr = " + wr);
-//						System.out.println("wc = " + wc);
-//						System.out.println(nr);
-//						System.out.println(nc);
-					// 지도 범위
-					if (nr < 0 || nr >= R || nc < 0 || nc >= C)
-						continue;
-					// 방문한 곳, 물과 돌
-					if (!isCheck[temp[0]][temp[1]] || arr[nr][nc].equals("*") || arr[nr][nc].equals("X"))
-						continue;
-
-					// 이동
-
-					// 도착시
-					if (nr == sPosition[0] && nc == sPosition[1]) {
-						if (cnt < min_val) {
-							min_val = cnt;
-							cnt = 0;
-							System.out.println(min_val);
-							break;
-						}
-					}
-
-					// 다음 위치
-					int[] e = new int[2];
-					cnt += 1;
-					e[0] = nr;
-					e[1] = nc;
-					isCheck[nr][nc] = true;
-					queue.add(e);
-
-				}
+				if (nr < 0 || nr >= r || nc < 0 || nc >= c)
+					continue;
+				if(arr[nr][nc].equals("X") || arr[nr][nc].equals("*")||arr[nr][nc].equals("D") || arr[nr][nc].equals("S")  )
+					continue;
+				arr[nr][nc] = "*";
+				list.add(new int[] {nr, nc});
 			}
+		}
+		
+		queue.add(new Integer[] { start[0], start[1] });
+		check[start[0]][start[1]] = 0;
 
+		while (!queue.isEmpty()) {
+			Integer[] temp = queue.poll();
+			int row = temp[0];
+			int col = temp[1];
+			
+			// 물 확산
+			if((cnt++)==check[row][col]) {
+				
+				len = list.size();
+				for (int i=0; i<len; i++) {
+					int ro = list.get(i)[0];
+					int co = list.get(i)[1];
+					for (int j = 0; j < 4; j++) {
+						int nr = dr[j] + ro;
+						int nc = dc[j] + co;
+						
+						if (nr < 0 || nr >= r || nc < 0 || nc >= c)
+							continue;
+						
+						if(arr[nr][nc].equals("X") || arr[nr][nc].equals("*")||arr[nr][nc].equals("D") || arr[nr][nc].equals("S")  )
+							continue;
+						
+						arr[nr][nc] = "*";
+						list.add(new int[] {nr, nc});
+					}
+				}
+				
+			}
+			
+			// 이동
+			for(int i =0; i<4; i++) {
+				int nr = row + dr[i];
+				int nc = col + dc[i];
+				
+				if (nr < 0 || nr >= r || nc < 0 || nc >= c)
+					continue;
+				
+				if(arr[nr][nc].equals("X") || arr[nr][nc].equals("*") || arr[nr][nc].equals("S")) continue;
+			
+				queue.add(new Integer[] {nr, nc});
+				check[nr][nc] = check[row][col] + 1;
+			}	
+			
 		}
 
 	}
