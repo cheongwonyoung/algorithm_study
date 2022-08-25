@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
 
 public class Main_1197_최소스패닝트리 {
 	
-	public static class Edge implements Comparable<Edge>{
+	public static class Edge {//implements Comparable<Edge>{
 
 		int a, b, c;
 		
@@ -21,10 +21,10 @@ public class Main_1197_최소스패닝트리 {
 			this.b = b;
 			this.c = c;
 		}
-		@Override
-		public int compareTo(Edge o) {
-			return this.c - o.c;
-		}
+//		@Override
+//		public int compareTo(Edge o) {
+//			return this.c - o.c;
+//		}
 		
 	}
 	
@@ -35,7 +35,13 @@ public class Main_1197_최소스패닝트리 {
 		int v= Integer.parseInt(tem[0]);
 		int e= Integer.parseInt(tem[1]);
 		
-		PriorityQueue<Edge> queue = new PriorityQueue<>();
+		PriorityQueue<Edge> queue = new PriorityQueue<>(new Comparator<Edge>() {
+			@Override
+			public int compare(Edge o1, Edge o2) {
+				
+				return o1.c - o2.c;
+			}
+		});
 
 		int[] arr = new int[v+1];
 		int result = 0;
@@ -52,7 +58,7 @@ public class Main_1197_최소스패닝트리 {
 			queue.add(new Edge(a,b,c));	
 			
 		}
-
+		
 		int len = queue.size();
 		for(int i=0; i<len; i++) {
 			Edge temp = queue.poll();
@@ -61,7 +67,7 @@ public class Main_1197_최소스패닝트리 {
 			union(arr, temp.a, temp.b);
 			result += temp.c;
 		}
-
+		
 		sb.append(result);
 		System.out.println(result);
 	}
