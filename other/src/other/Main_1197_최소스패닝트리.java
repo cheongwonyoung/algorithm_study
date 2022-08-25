@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class Main_1997_최소스패닝트리 {
+public class Main_1197_최소스패닝트리 {
 	
 	public static class Edge implements Comparable<Edge>{
 
