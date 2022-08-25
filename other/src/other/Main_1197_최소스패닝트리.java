@@ -35,14 +35,8 @@ public class Main_1197_최소스패닝트리 {
 		int v= Integer.parseInt(tem[0]);
 		int e= Integer.parseInt(tem[1]);
 		
-//		PriorityQueue<Edge> queue = new PriorityQueue<>(new Comparator<Edge>() {
-//			@Override
-//			public int compare(Edge o1, Edge o2) {
-//				return o1.c-o2.c;
-//			}
-//		});
-		
-		List<Edge> queue = new ArrayList<Edge>();
+		PriorityQueue<Edge> queue = new PriorityQueue<>();
+
 		int[] arr = new int[v+1];
 		int result = 0;
 		for(int i = 0; i<=v; i++) {
@@ -58,9 +52,11 @@ public class Main_1197_최소스패닝트리 {
 			queue.add(new Edge(a,b,c));	
 			
 		}
-		Collections.sort(queue);
-		for(Edge temp : queue) {
-//			System.out.println(temp.c);
+
+		int len = queue.size();
+		for(int i=0; i<len; i++) {
+			Edge temp = queue.poll();
+			System.out.println(temp.c);
 			if(find(arr, temp.a) == find(arr, temp.b)) continue;
 			union(arr, temp.a, temp.b);
 			result += temp.c;
