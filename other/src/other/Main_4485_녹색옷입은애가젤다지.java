@@ -64,7 +64,7 @@ public class Main_4485_녹색옷입은애가젤다지 {
 				
 					val[nr][nc] = val[row][col] + arr[nr][nc];
 					queue.add(new int[] {nr, nc});
-
+					
 				
 			}
 			
