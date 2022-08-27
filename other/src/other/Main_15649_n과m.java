@@ -13,12 +13,11 @@ public class Main_15649_n과m {
 	static boolean[] visited; 
 	static int[] result;
 	static int cnt;
-//	static StringBuilder sb;
-	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	static StringBuilder sb= new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		sb = new StringBuilder();
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		String[] tem = in.readLine().split(" ");
 		n = Integer.parseInt(tem[0]); 
 		m = Integer.parseInt(tem[1]);
@@ -26,20 +25,21 @@ public class Main_15649_n과m {
 		result = new int[m];
 		per(0);
 //		System.out.print(sb);
-		bw.flush(); // stack에 누적된 명령(append)들을 한번에 실행
+		bw.write(sb.toString()); // sb에 있는거 string으로 바꿔서 bw에 저장
+		bw.flush(); // bw stack에 누적된 명령(append)들을 한번에 실행
 		bw.close();
 		
 	}
 	
-	public static void per(int start) throws IOException {
+	public static void per(int start) { //throws IOException {
 			if(m==start) {
 				for(int temp : result) {
-//					sb.append(temp).append(" ");
-					bw.append(Integer.toString(temp));
-					bw.append(" ");
+					sb.append(temp).append(" ");
+//					bw.append(Integer.toString(temp));
+//					bw.append(" ");
 				}
-//				sb.append("\n");
-				bw.append("\n");
+				sb.append("\n");
+//				bw.append("\n");
 				return;
 			}
 			
