@@ -22,10 +22,7 @@ public class Solution_4013_특이한자석 {
 			sb.append("#").append(t).append(" ");
 			int k = Integer.parseInt(in.readLine());
 			int result = 0;
-//			int[] arr1 = new int[8];
-//			int[] arr2 = new int[8];
-//			int[] arr3 = new int[8];
-//			int[] arr4 = new int[8];
+
 			Deque<Integer> arr1 = new ArrayDeque<>();
 			Deque<Integer> arr2 = new ArrayDeque<>();
 			Deque<Integer> arr3 = new ArrayDeque<>();
@@ -38,7 +35,7 @@ public class Solution_4013_특이한자석 {
 			
 			for(int i = 0; i<8; i++) {
 				// 4개 자석의 8개의 날의 자성정보 (0은 N, 1은 S)
-				arr1.add(Integer.parseInt(tem1[i]));
+				arr1.add(Integer.parseInt(tem1[i])); 
 				arr2.add(Integer.parseInt(tem2[i]));
 				arr3.add(Integer.parseInt(tem3[i]));
 				arr4.add(Integer.parseInt(tem4[i]));
@@ -56,6 +53,7 @@ public class Solution_4013_특이한자석 {
 				int arr3_7 = 0;
 				int arr4_7 = 0;
 				
+				
 				String[] tem = in.readLine().split(" ");
 				int cnt = Integer.parseInt(tem[0]); // 자석번호
 				int dir = Integer.parseInt(tem[1]); // 왼(-1) , 오(1)
@@ -63,12 +61,12 @@ public class Solution_4013_특이한자석 {
 				
 				// 겹치는 부분들의 값 찾아내기
 				for(int q = 0; q<7; q++) {
-					if(q==2) {
+					if(q==2) { // 자석의 동쪽 값
 						arr1_3 = it1.next();
 						arr2_3 = it2.next();
 						arr3_3 = it3.next();
 					}
-					else if(q==6) {
+					else if(q==6) { // 자석의 서쪽 값
 						arr2_7 = it2.next();
 						arr3_7 = it3.next();
 						arr4_7 = it4.next();
