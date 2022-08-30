@@ -58,7 +58,7 @@ public class Solution_낚시터 {
 	public static void position(int n) {
 		int p = gate[n][0]; // 게이트 위치
 		int w = gate[n][1]; // 게이트에 대기자 수
-
+		
 		int move = 0, move2 = 0;
 		for (int i = 0; i < w; i++) {
 			// 왼 - 오
@@ -93,13 +93,13 @@ public class Solution_낚시터 {
 				move2++;
 			}
 		}
-		if(move > move2) {
-			if(move2 < min_val)
-				min_val = move2;
+		if(cnt > cnt2) {
+			if(cnt2 < min_val)
+				min_val = cnt2;
 		}
 		else {
-			if(move < min_val)
-				min_val = move;
+			if(cnt < min_val)
+				min_val = cnt;
 		}
 
 	}
