@@ -19,7 +19,7 @@ public class Main_2563_색종이 {
 			int y = Integer.parseInt(temp[1]);
 			for(int j=y; j<y+10; j++) {
 				for(int k=x; k<x+10; k++) {
-					arr[j][k] = 1;
+					arr[j][k] = 1; 
 				
 				}
 			}
