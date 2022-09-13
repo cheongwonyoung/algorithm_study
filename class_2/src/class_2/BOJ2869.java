@@ -11,38 +11,17 @@ public class BOJ2869 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		int n = Integer.parseInt(in.readLine());
-
-		String[] arr = new String[n];
 		
-		for(int i = 0; i<n; i++) {
-			arr[i] = in.readLine();
+		String[] tem = in.readLine().split(" ");
+		int A = Integer.parseInt(tem[0]);
+		int B = Integer.parseInt(tem[1]);
+		int V = Integer.parseInt(tem[2]);
+		
+		int cnt = (V-B) / (A-B);
+		if( (V-B) % (A-B) != 0){
+			cnt++;
 		}
-		
-		Arrays.sort(arr, new Comparator<String>(){
-
-			@Override
-			public int compare(String o1, String o2) {
-				if(o1.length() == o2.length()) {
-					return o1.compareTo(o2);
-				}
-				else{
-					return o1.length()-o2.length();
-				}
-			}
-			
-		});
-		
-		sb.append(arr[0]).append("\n");
-		
-		for(int i=1; i<n; i++) {
-			if(arr[i].equals(arr[i-1])) {
-				continue;
-			}
-			sb.append(arr[i]).append("\n");
-		}
-		
-		System.out.println(sb);
+		System.out.println(cnt);
 	}
 	
 }
