@@ -20,7 +20,7 @@ public class Solution_두큐합같게만들기 {
 	}
 	
 	public static int solution(int[] queue1, int[] queue2) {
-        int answer = -1;
+		int answer = -1;
         int len1 = queue1.length;
         int len2 = queue2.length;
         long sum1 = 0;
@@ -45,11 +45,12 @@ public class Solution_두큐합같게만들기 {
         while(true) {
 //        	System.out.println("sum1 = " + sum1);
 //        	System.out.println("sum2 = " + sum2);
-        	if(sum1 == mid && sum2 == mid) {
-        		answer =cnt;
+        	
+        	if(cnt > len1*4) {
         		break;
         	}
-        	else if(cnt > len1*2) {
+            else if(sum1 == mid && sum2 == mid) {
+        		answer =cnt;
         		break;
         	}
         	else if (sum1>sum2) {
