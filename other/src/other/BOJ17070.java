@@ -8,7 +8,7 @@ import java.util.ArrayDeque;
 public class BOJ17070 {
 	static int[][] arr;
 	static int n;
-	static int total;
+	static int total; 
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -33,7 +33,7 @@ public class BOJ17070 {
 		queue.add(new int[] {i,j,0});
 //		boolean[][] check = new boolean[n][n];
 //		check[i][j]=true;
-		int state = 0; // 0: Í∞ÄÎ°ú, 1:ÏÑ∏Î°ú, 2:ÎåÄÍ∞Å
+		int state = 0; // 0: ∞°∑Œ, 1:ºº∑Œ, 2:¥Î∞¢
 		
 		while(!queue.isEmpty()) {
 			int[] tem = queue.poll();
@@ -49,18 +49,18 @@ public class BOJ17070 {
 				continue;
 			}
 			
-			// Í∞ÄÎ°ú Ïù¥Îèô
+			// ∞°∑Œ ¿Ãµø
 			if(state!=1 && i<n && j+1<n && arr[i][j+1]==0) {
 
 				queue.add(new int[] {i, j+1, 0});
 
 			}
-			// ÏÑ∏Î°ú Ïù¥Îèô
+			// ºº∑Œ ¿Ãµø
 			if(state!=0 && i+1<n && j<n && arr[i+1][j]==0 ) {
 
 				queue.add(new int[] {i+1, j, 1});
 			}
-			// ÎåÄÍ∞Å Ïù¥Îèô
+			// ¥Î∞¢ ¿Ãµø
 			if(i+1<n && j+1<n && arr[i+1][j+1]==0 && arr[i][j+1]==0 && arr[i+1][j]==0 ) {
 
 				queue.add(new int[] {i+1, j+1, 2});
