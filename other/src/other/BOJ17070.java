@@ -8,7 +8,11 @@ import java.util.ArrayDeque;
 public class BOJ17070 {
 	static int[][] arr;
 	static int n;
+<<<<<<< HEAD
 	static int total; 
+=======
+	static int total;
+>>>>>>> 0d7306307e359bae0e9157f7083b07836cb6409b
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
