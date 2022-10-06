@@ -8,7 +8,6 @@ public class Solution_d5_7793_오나의여신님_지역_반_홍길동_bfs_cnt{
 	static int[] dj={0,1,0,-1};
 	static int ei=0, ej=0, temp =0;
 	public static void main(String args[]) throws Exception{
-		System.setIn(new FileInputStream("res/input_d5_7793.txt"));
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb=new StringBuilder();		
         int T=Integer.parseInt(br.readLine());
