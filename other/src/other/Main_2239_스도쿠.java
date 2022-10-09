@@ -8,137 +8,80 @@ import java.util.ArrayDeque;
 public class Main_2239_스도쿠 {
 
 	static int[][] arr = new int[9][9];
-
+	static boolean[][] rowCheck = new boolean[9][9];
+	static boolean[][] colCheck = new boolean[9][9];
+	static boolean[][] rangeCheck = new boolean[9][9];
+	static boolean check;
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		
+		StringBuilder sb = new StringBuilder();
 		for(int i =0; i<9; i++) {
 			String[] temp = in.readLine().split("");
 			for(int j =0; j<9; j++) {
 				arr[i][j] = Integer.parseInt(temp[j]);
+				if(arr[i][j] != 0) {
+					rowCheck[i][arr[i][j]-1] = true;
+					colCheck[j][arr[i][j]-1] = true;
+					rangeCheck[3*(i/3)+j/3][arr[i][j]-1] = true;
+				}
 			}
 		}
-
-		meth(0,0);
 		
-		for(int i = 0; i<9; i++) {
+		dfs(0,0);
+		
+		for(int i=0; i<9; i++) {
 			for(int j=0; j<9; j++) {
-				System.out.print(arr[i][j] + " ");
+				sb.append(arr[i][j]).append(" ");
 			}
-			System.out.println();
+			sb.append("\n");
+		}
+		System.out.println(sb);
+	}
+	
+	
+	static void dfs(int r, int c) {
+		
+		if(r==9 && c==0) {
+			check = true;
+			
+			return;
 		}
 		
-	}
-
-	private static void meth(int i, int j) {
-
-			while(true) {
+		if(arr[r][c]!=0) {
+			if(c<8) {
+				dfs(r,c+1);
+			}
+			else {
+				dfs(r+1,0);
+			}
+			if(check) return;
+		}
+		else {
+			for(int i=1; i<=9; i++) {
 				
-				if(j==8) {
-					i+=1;
-					j=0; 
-				}
-				else {
-					j = j+1;
-				}
-				System.out.println(i + " " + j);
-				if(arr[i][j]!=0 && !(i==8 && j==8)) continue;
-				for(int val=1; val<=9; val++) {
-					if(checkRow(i,j, val) && checkCol(i,j,val) && checkRec(i,j,val)) {
-						arr[i][j] = val;
-						break;
+				if(!rowCheck[r][i-1] && !colCheck[c][i-1] && !rangeCheck[3*(r/3)+c/3][i-1]) { // 들어갈 수 있으면
+					arr[r][c] = i;
+					rowCheck[r][i-1] = true;
+					colCheck[c][i-1] = true;
+					rangeCheck[3*(r/3)+c/3][i-1] = true;
+					if(c<8) {
+						dfs(r,c+1);
 					}
 					else {
-						return;
+						dfs(r+1,0);
 					}
+					if(check) 
+						return;
+					arr[r][c]=0;
+					rowCheck[r][i-1] = false;
+					colCheck[c][i-1] = false;
+					rangeCheck[3*(r/3)+c/3][i-1] = false;
 				}
-
-				if(i==8 && j==8) return;
+			}
 		}
 		
 	}
-
 	
-	private static boolean checkRow(int i, int j, int val) {
-		
-		for(int c = 0; c<9; c++) {
-			if(c==j) continue;
-			else if(arr[i][c] == val) return false;
-		} 
-		return true;
-	}
-	private static boolean checkCol(int i, int j, int val) {
-		for(int r = 0; r<9; r++) {
-			if(r==i) continue;
-			else if(arr[r][j] == val) return false;
-		} 
-		return true;
-	}
-	private static boolean checkRec(int i, int j, int val) {
-		if(i>=0 && i<3 && j>=0 && j<3) {
-			for(int r = 0; r<3; r++) {
-				for(int c = 0; c<3; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=0 && i<3 && j>=3 && j<6) {
-			for(int r = 0; r<3; r++) {
-				for(int c = 3; c<6; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=0 && i<3 && j>=6 && j<9) {
-			for(int r = 0; r<3; r++) {
-				for(int c = 6; c<9; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=3 && i<6 && j>=0 && j<3) {
-			for(int r = 3; r<6; r++) {
-				for(int c = 0; c<3; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=3 && i<6 && j>=3 && j<6) {
-			for(int r = 3; r<6; r++) {
-				for(int c = 3; c<6; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=3 && i<6 && j>=6 && j<9) {
-			for(int r = 3; r<6; r++) {
-				for(int c = 6; c<9; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=6 && i<9 && j>=0 && j<3) {
-			for(int r = 6; r<9; r++) {
-				for(int c = 0; c<3; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=6 && i<9 && j>=3 && j<6) {
-			for(int r = 6; r<9; r++) {
-				for(int c = 3; c<6; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		else if(i>=6 && i<9 && j>=6 && j<9) {
-			for(int r = 6; r<9; r++) {
-				for(int c = 6; c<9; c++) {
-					if(arr[r][c]==val) return false;
-				}
-			}
-		}
-		return true;
-	}
 	
 }
