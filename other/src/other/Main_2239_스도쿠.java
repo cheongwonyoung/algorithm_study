@@ -32,7 +32,7 @@ public class Main_2239_스도쿠 {
 		
 		for(int i=0; i<9; i++) {
 			for(int j=0; j<9; j++) {
-				sb.append(arr[i][j]).append(" ");
+				sb.append(arr[i][j]);
 			}
 			sb.append("\n");
 		}
