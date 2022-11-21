@@ -14,7 +14,7 @@ public class BOJ15657 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		sb = new StringBuilder();
-		String[] tem = in.readLine().split(" ");
+		String[] tem = in.readLine().split(" ");//..
 		n = Integer.parseInt(tem[0]);
 		m = Integer.parseInt(tem[1]);
 		
