@@ -39,5 +39,6 @@ public class BOJ15565 {
 
 		System.out.println(min_val);
 
+		
 	}
 }
